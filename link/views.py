@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -46,9 +46,19 @@ class EditUserLinkAPIView(APIView):
 
 class RenderPublicURLAPIView(APIView):
 
-    def get(self, request, str):
-        if(Url.objects.filter(short_link=str)).exists():
-            serializer_data = Url.objects.get(short_link=str)
+    def get(self, request, slug):
+        url = Url.objects.get(short_link=slug)
+        if url:
+            return redirect(url.given_link)
+        return redirect("https://link-short-chandan-kumar.netlify.app/")
+
+
+
+class RenderCLientPublicURLAPIView(APIView):
+
+    def get(self, request, slug):
+        if(Url.objects.filter(short_link=slug)).exists():
+            serializer_data = Url.objects.get(short_link=slug)
             final_serializer = RenderPublicURLSerializer(serializer_data)
             return Response(final_serializer.data)
         return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)

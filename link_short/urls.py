@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from link.views import RenderPublicURLAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('url_api/', include('link.urls')),
-    path('accounts_api/', include('accounts.urls'))
+    path('accounts_api/', include('accounts.urls')),
+    path("<str:slug>/", RenderPublicURLAPIView.as_view())
 ]
