@@ -137,9 +137,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://localhost:5000",
+    # "http://localhost:3000",
+    # "http://localhost:8000",
+    # "http://localhost:5000",
+    # "https://keen-jennings-2598c8.netlify.app/",
+    "*"
 ]
 
 # Activate Django-Heroku.
