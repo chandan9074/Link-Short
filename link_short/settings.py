@@ -141,7 +141,6 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     "http://localhost:5000",
     "https://link-short-chandan-kumar.netlify.app/",
-    # "*"
 ]
 
 # Activate Django-Heroku.
